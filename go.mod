@@ -1,3 +1,3 @@
 module github.com/A-pen-app/deeplink
 
-go 1.23.0
+go 1.21
