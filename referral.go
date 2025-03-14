@@ -19,7 +19,7 @@ type ReferralLink struct {
 }
 
 func (p *ReferralLink) Build() (string, error) {
-	v := fmt.Sprintf(string(LoginDeeplinkValue), p.invitationType, p.invitationCode)
+	v := fmt.Sprintf(string(LoginValue), p.invitationType, p.invitationCode)
 	encodedValue := url.QueryEscape(v)
 	link := fmt.Sprintf("%s?af_xp=custom&pid=Apen_dev&c=%s&deep_link_value=%s&af_dp=%s&af_force_deeplink=true", baseUrl, ReferralCampaign, encodedValue, encodedValue)
 	return link, nil

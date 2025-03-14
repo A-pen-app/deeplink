@@ -12,21 +12,24 @@ const (
 	ShareJoin DeeplinkType = iota
 	SpecialtyPost
 	Referral
+	MeetupAttend
 )
 
 type DeeplinkCampaign string
 
 const (
-	ShareJoinCampaign DeeplinkCampaign = "share_and_join"
-	SpecialtyCampaign DeeplinkCampaign = "專科專區"
-	ReferralCampaign  DeeplinkCampaign = "referral"
+	ShareJoinCampaign    DeeplinkCampaign = "share_and_join"
+	SpecialtyCampaign    DeeplinkCampaign = "專科專區"
+	ReferralCampaign     DeeplinkCampaign = "referral"
+	MeetupAttendCampaign DeeplinkCampaign = "活動"
 )
 
 type DeeplinkValue string
 
 const (
-	LoginDeeplinkValue    DeeplinkValue = "apen://login/?type=%v&code=%s"
-	PostDeeplinkValue     DeeplinkValue = "apen://posts/%s"
-	RewardDeeplinkValue   DeeplinkValue = "apen://shop/wallet_history/?tab=%s"
-	MissionsDeeplinkValue DeeplinkValue = "apen://missions/mission_list"
+	LoginValue        DeeplinkValue = "apen://login/?type=%v&code=%s"
+	PostValue         DeeplinkValue = "apen://posts/%s"
+	RewardValue       DeeplinkValue = "apen://shop/wallet_history/?tab=%s"
+	MissionsValue     DeeplinkValue = "apen://missions/mission_list"
+	MeetupAttendValue DeeplinkValue = "apen://meetups/%s"
 )
