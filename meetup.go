@@ -30,15 +30,14 @@ func (p *MeetupAttendLink) Build() (string, error) {
 	// 組合 deeplink URL
 	deeplinkPath := fmt.Sprintf(string(MeetupAttendValue), p.meetupID)
 	deeplinkURL := config.URLScheme + deeplinkPath
-	encodedValue := url.QueryEscape(deeplinkURL)
 
 	// 設定查詢參數
 	params := url.Values{}
 	params.Add("af_xp", "email")
 	params.Add("pid", "Email")
 	params.Add("c", string(MeetupAttendCampaign))
-	params.Add("deep_link_value", encodedValue)
-	params.Add("af_dp", encodedValue)
+	params.Add("deep_link_value", deeplinkURL)
+	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")
 
 	// 使用 url.URL 組建最終 URL
