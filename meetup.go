@@ -5,20 +5,33 @@ import (
 	"net/url"
 )
 
-func NewMeetupAttendLink(meetupID string) Deeplink {
+func NewMeetupAttendLink(platform Platform, meetupID string) Deeplink {
 	p := MeetupAttendLink{
+		platform: platform,
 		meetupID: meetupID,
 	}
 	return &p
 }
 
 type MeetupAttendLink struct {
+	platform Platform
 	meetupID string
 }
 
 func (p *MeetupAttendLink) Build() (string, error) {
-	v := fmt.Sprintf(string(MeetupAttendValue), p.meetupID)
-	encodedValue := url.QueryEscape(v)
-	link := fmt.Sprintf("%s?af_xp=email&pid=Email&c=%s&deep_link_value=%s&af_dp=%s&af_force_deeplink=true", baseUrl, MeetupAttendCampaign, encodedValue, encodedValue)
-	return link, nil
+	config := platformConfigs[p.platform]
+
+	deeplinkPath := fmt.Sprintf(string(MeetupAttendValue), p.meetupID)
+	deeplinkURL := config.URLScheme + deeplinkPath
+	encodedDeeplinkValue := url.QueryEscape(deeplinkURL)
+
+	params := url.Values{}
+	params.Add("af_xp", "email")
+	params.Add("pid", "Email")
+	params.Add("c", string(MeetupAttendCampaign))
+	params.Add("deep_link_value", encodedDeeplinkValue)
+	params.Add("af_dp", encodedDeeplinkValue)
+	params.Add("af_force_deeplink", "true")
+
+	return config.BaseURL + "?" + params.Encode(), nil
 }

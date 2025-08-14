@@ -5,32 +5,28 @@ import (
 	"net/url"
 )
 
-func NewSpecialtyPostLink(platform Platform, postID string) Deeplink {
-	p := SpecialtyPostLink{
+func NewSharePostLink(platform Platform, postID string) (Deeplink, error) {
+	p := SharePostLink{
 		platform: platform,
 		postID:   postID,
 	}
-	return &p
+	return &p, nil
 }
 
-type SpecialtyPostLink struct {
+type SharePostLink struct {
 	platform Platform
 	postID   string
 }
 
-func (p *SpecialtyPostLink) Build() (string, error) {
+func (p *SharePostLink) Build() (string, error) {
 	config := platformConfigs[p.platform]
 
-	// 組合 deeplink URL: scheme + path
 	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
 	deeplinkURL := config.URLScheme + deeplinkPath
 	encodedValue := url.QueryEscape(deeplinkURL)
 
-	// 靈活的查詢參數建構
 	params := url.Values{}
-	params.Add("af_xp", "email")
-	params.Add("pid", "Email")
-	params.Add("c", string(SpecialtyCampaign))
+	params.Add("af_xp", "custom")
 	params.Add("deep_link_value", encodedValue)
 	params.Add("af_dp", encodedValue)
 	params.Add("af_force_deeplink", "true")
