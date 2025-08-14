@@ -5,22 +5,46 @@ import (
 	"net/url"
 )
 
-func NewReferralLink(inviteType InvitationType, code string) Deeplink {
+func NewReferralLink(platform Platform, code string) (Deeplink, error) {
+	if !isValid6DigitCode(code) {
+		return nil, fmt.Errorf("invalid 6-digit code format: %s", code)
+	}
 	p := ReferralLink{
-		invitationType: inviteType,
+		platform:       platform,
 		invitationCode: code,
 	}
-	return &p
+	return &p, nil
 }
 
 type ReferralLink struct {
-	invitationType InvitationType
+	platform       Platform
 	invitationCode string
 }
 
 func (p *ReferralLink) Build() (string, error) {
-	v := fmt.Sprintf(string(LoginValue), p.invitationType, p.invitationCode)
-	encodedValue := url.QueryEscape(v)
-	link := fmt.Sprintf("%s?af_xp=custom&pid=Apen_dev&c=%s&deep_link_value=%s&af_dp=%s&af_force_deeplink=true", baseUrl, ReferralCampaign, encodedValue, encodedValue)
-	return link, nil
+	config := platformConfigs[p.platform]
+
+	// 解析 base URL
+	baseURL, err := url.Parse(config.BaseURL)
+	if err != nil {
+		return "", fmt.Errorf("invalid base URL: %w", err)
+	}
+
+	// 組合 deeplink URL
+	deeplinkPath := fmt.Sprintf(string(LoginValue), InvitationTypeCode, p.invitationCode)
+	deeplinkURL := config.URLScheme + deeplinkPath
+
+	// 設定查詢參數
+	params := url.Values{}
+	params.Add("af_xp", "custom")
+	params.Add("pid", config.Name+"_dev")
+	params.Add("c", string(ReferralCampaign))
+	params.Add("deep_link_value", deeplinkURL)
+	params.Add("af_dp", deeplinkURL)
+	params.Add("af_force_deeplink", "true")
+
+	// 使用 url.URL 組建最終 URL
+	baseURL.RawQuery = params.Encode()
+
+	return baseURL.String(), nil
 }

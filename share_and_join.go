@@ -5,20 +5,23 @@ import (
 	"net/url"
 )
 
-func NewMeetupAttendLink(platform Platform, meetupID string) Deeplink {
-	p := MeetupAttendLink{
-		platform: platform,
-		meetupID: meetupID,
+func NewShareJoinLink(platform Platform, code string) (Deeplink, error) {
+	if !isValidUUID(code) {
+		return nil, fmt.Errorf("invalid UUID format: %s", code)
 	}
-	return &p
+	p := ShareJoinLink{
+		platform:       platform,
+		invitationCode: code,
+	}
+	return &p, nil
 }
 
-type MeetupAttendLink struct {
-	platform Platform
-	meetupID string
+type ShareJoinLink struct {
+	platform       Platform
+	invitationCode string
 }
 
-func (p *MeetupAttendLink) Build() (string, error) {
+func (p *ShareJoinLink) Build() (string, error) {
 	config := platformConfigs[p.platform]
 
 	// 解析 base URL
@@ -28,14 +31,14 @@ func (p *MeetupAttendLink) Build() (string, error) {
 	}
 
 	// 組合 deeplink URL
-	deeplinkPath := fmt.Sprintf(string(MeetupAttendValue), p.meetupID)
+	deeplinkPath := fmt.Sprintf(string(LoginValue), InvitationTypeID, p.invitationCode)
 	deeplinkURL := config.URLScheme + deeplinkPath
 
 	// 設定查詢參數
 	params := url.Values{}
-	params.Add("af_xp", "email")
-	params.Add("pid", "Email")
-	params.Add("c", string(MeetupAttendCampaign))
+	params.Add("af_xp", "custom")
+	params.Add("pid", config.Name+"_dev")
+	params.Add("c", string(ShareJoinCampaign))
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")

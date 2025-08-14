@@ -5,20 +5,20 @@ import (
 	"net/url"
 )
 
-func NewMeetupAttendLink(platform Platform, meetupID string) Deeplink {
-	p := MeetupAttendLink{
+func NewSharePostLink(platform Platform, postID string) Deeplink {
+	p := SharePostLink{
 		platform: platform,
-		meetupID: meetupID,
+		postID:   postID,
 	}
 	return &p
 }
 
-type MeetupAttendLink struct {
+type SharePostLink struct {
 	platform Platform
-	meetupID string
+	postID   string
 }
 
-func (p *MeetupAttendLink) Build() (string, error) {
+func (p *SharePostLink) Build() (string, error) {
 	config := platformConfigs[p.platform]
 
 	// 解析 base URL
@@ -28,14 +28,12 @@ func (p *MeetupAttendLink) Build() (string, error) {
 	}
 
 	// 組合 deeplink URL
-	deeplinkPath := fmt.Sprintf(string(MeetupAttendValue), p.meetupID)
+	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
 	deeplinkURL := config.URLScheme + deeplinkPath
 
 	// 設定查詢參數
 	params := url.Values{}
-	params.Add("af_xp", "email")
-	params.Add("pid", "Email")
-	params.Add("c", string(MeetupAttendCampaign))
+	params.Add("af_xp", "custom")
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")

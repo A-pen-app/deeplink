@@ -5,20 +5,43 @@ import (
 	"net/url"
 )
 
-func NewSpecialtyPostLink(postID string) Deeplink {
+func NewSpecialtyPostLink(platform Platform, postID string) Deeplink {
 	p := SpecialtyPostLink{
-		postID: postID,
+		platform: platform,
+		postID:   postID,
 	}
 	return &p
 }
 
 type SpecialtyPostLink struct {
-	postID string
+	platform Platform
+	postID   string
 }
 
 func (p *SpecialtyPostLink) Build() (string, error) {
-	v := fmt.Sprintf(string(PostValue), p.postID)
-	encodedValue := url.QueryEscape(v)
-	link := fmt.Sprintf("%s?af_xp=email&pid=Email&c=%s&deep_link_value=%s&af_dp=%s&af_force_deeplink=true", baseUrl, SpecialtyCampaign, encodedValue, encodedValue)
-	return link, nil
+	config := platformConfigs[p.platform]
+
+	// 解析 base URL
+	baseURL, err := url.Parse(config.BaseURL)
+	if err != nil {
+		return "", fmt.Errorf("invalid base URL: %w", err)
+	}
+
+	// 組合 deeplink URL
+	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
+	deeplinkURL := config.URLScheme + deeplinkPath
+
+	// 設定查詢參數
+	params := url.Values{}
+	params.Add("af_xp", "email")
+	params.Add("pid", "Email")
+	params.Add("c", string(SpecialtyCampaign))
+	params.Add("deep_link_value", deeplinkURL)
+	params.Add("af_dp", deeplinkURL)
+	params.Add("af_force_deeplink", "true")
+
+	// 使用 url.URL 組建最終 URL
+	baseURL.RawQuery = params.Encode()
+
+	return baseURL.String(), nil
 }

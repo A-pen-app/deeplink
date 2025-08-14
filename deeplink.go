@@ -1,10 +1,32 @@
 package deeplink
 
+import (
+	"regexp"
+)
+
 type Deeplink interface {
 	Build() (string, error)
 }
 
-const baseUrl string = "https://apen.penpeer.co/sJck"
+type Platform int
+
+const (
+	PlatformApen Platform = iota
+	PlatformPhar
+	PlatformNurse
+)
+
+type PlatformConfig struct {
+	BaseURL   string
+	URLScheme string
+	Name      string
+}
+
+var platformConfigs = map[Platform]PlatformConfig{
+	PlatformApen:  {BaseURL: "https://apen.penpeer.co/sJck", URLScheme: "apen://", Name: "Apen"},
+	PlatformPhar:  {BaseURL: "https://phar.penpeer.co/9db5", URLScheme: "phar://", Name: "Phar"},
+	PlatformNurse: {BaseURL: "https://nurse.penpeer.co/cLnc", URLScheme: "nstation://", Name: "Nurse"},
+}
 
 type DeeplinkType int
 
@@ -27,9 +49,26 @@ const (
 type DeeplinkValue string
 
 const (
-	LoginValue        DeeplinkValue = "apen://login/?type=%v&code=%s"
-	PostValue         DeeplinkValue = "apen://posts/%s"
-	RewardValue       DeeplinkValue = "apen://shop/wallet_history/?tab=%s"
-	MissionsValue     DeeplinkValue = "apen://missions/mission_list"
-	MeetupAttendValue DeeplinkValue = "apen://meetups/%s"
+	LoginValue        DeeplinkValue = "login/?type=%v&code=%s"
+	PostValue         DeeplinkValue = "posts/%s"
+	RewardValue       DeeplinkValue = "shop/wallet_history/?tab=%s"
+	MissionsValue     DeeplinkValue = "missions/mission_list"
+	MeetupAttendValue DeeplinkValue = "meetups/%s"
+)
+
+func isValidUUID(s string) bool {
+	matched, _ := regexp.MatchString(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$`, s)
+	return matched
+}
+
+func isValid6DigitCode(s string) bool {
+	matched, _ := regexp.MatchString(`^[A-Za-z0-9]{6}$`, s)
+	return matched
+}
+
+type InvitationType int
+
+const (
+	InvitationTypeID InvitationType = iota
+	InvitationTypeCode
 )
