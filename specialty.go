@@ -21,10 +21,18 @@ type SpecialtyPostLink struct {
 func (p *SpecialtyPostLink) Build() (string, error) {
 	config := platformConfigs[p.platform]
 
+	// 解析 base URL
+	baseURL, err := url.Parse(config.BaseURL)
+	if err != nil {
+		return "", fmt.Errorf("invalid base URL: %w", err)
+	}
+
+	// 組合 deeplink URL
 	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
 	deeplinkURL := config.URLScheme + deeplinkPath
 	encodedValue := url.QueryEscape(deeplinkURL)
 
+	// 設定查詢參數
 	params := url.Values{}
 	params.Add("af_xp", "email")
 	params.Add("pid", "Email")
@@ -33,5 +41,8 @@ func (p *SpecialtyPostLink) Build() (string, error) {
 	params.Add("af_dp", encodedValue)
 	params.Add("af_force_deeplink", "true")
 
-	return config.BaseURL + "?" + params.Encode(), nil
+	// 使用 url.URL 組建最終 URL
+	baseURL.RawQuery = params.Encode()
+
+	return baseURL.String(), nil
 }
