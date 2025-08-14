@@ -21,12 +21,10 @@ type SpecialtyPostLink struct {
 func (p *SpecialtyPostLink) Build() (string, error) {
 	config := platformConfigs[p.platform]
 
-	// 組合 deeplink URL: scheme + path
 	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
 	deeplinkURL := config.URLScheme + deeplinkPath
 	encodedValue := url.QueryEscape(deeplinkURL)
 
-	// 靈活的查詢參數建構
 	params := url.Values{}
 	params.Add("af_xp", "email")
 	params.Add("pid", "Email")

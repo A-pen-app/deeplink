@@ -5,12 +5,12 @@ import (
 	"net/url"
 )
 
-func NewSharePostLink(platform Platform, postID string) (Deeplink, error) {
+func NewSharePostLink(platform Platform, postID string) Deeplink {
 	p := SharePostLink{
 		platform: platform,
 		postID:   postID,
 	}
-	return &p, nil
+	return &p
 }
 
 type SharePostLink struct {
