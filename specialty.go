@@ -19,7 +19,7 @@ type SpecialtyPostLink struct {
 }
 
 func (p *SpecialtyPostLink) Build() (string, error) {
-	config := platformConfigs[p.platform]
+	config := PlatformConfigs[p.platform]
 
 	// 解析 base URL
 	baseURL, err := url.Parse(config.BaseURL)

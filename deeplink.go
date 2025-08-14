@@ -22,7 +22,7 @@ type PlatformConfig struct {
 	Name      string
 }
 
-var platformConfigs = map[Platform]PlatformConfig{
+var PlatformConfigs = map[Platform]PlatformConfig{
 	PlatformApen:  {BaseURL: "https://apen.penpeer.co/sJck", URLScheme: "apen://", Name: "Apen"},
 	PlatformPhar:  {BaseURL: "https://phar.penpeer.co/9db5", URLScheme: "phar://", Name: "Phar"},
 	PlatformNurse: {BaseURL: "https://nurse.penpeer.co/cLnc", URLScheme: "nstation://", Name: "Nurse"},
