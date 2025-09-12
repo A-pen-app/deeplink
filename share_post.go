@@ -33,6 +33,7 @@ func (p *SharePostLink) Build() (string, error) {
 
 	// 設定查詢參數
 	params := url.Values{}
+	params.Add("c", string(SharePostCampaign))
 	params.Add("af_xp", "custom")
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)

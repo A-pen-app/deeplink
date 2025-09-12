@@ -44,6 +44,7 @@ const (
 	SpecialtyCampaign    DeeplinkCampaign = "專科專區"
 	ReferralCampaign     DeeplinkCampaign = "referral"
 	MeetupAttendCampaign DeeplinkCampaign = "活動"
+	SharePostCampaign    DeeplinkCampaign = "share"
 )
 
 type DeeplinkValue string
