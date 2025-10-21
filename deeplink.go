@@ -17,13 +17,14 @@ const (
 )
 
 type PlatformConfig struct {
-	BaseURL   string
-	URLScheme string
-	Name      string
+	BaseURL    string
+	URLScheme  string
+	Name       string
+	WebBaseURL string
 }
 
 var PlatformConfigs = map[Platform]PlatformConfig{
-	PlatformApen:  {BaseURL: "https://apen.penpeer.co/sJck", URLScheme: "apen://", Name: "Apen"},
+	PlatformApen:  {BaseURL: "https://apen.penpeer.co/sJck", URLScheme: "apen://", Name: "Apen", WebBaseURL: "https://www.a-pen.co"},
 	PlatformPhar:  {BaseURL: "https://phar.penpeer.co/9db5", URLScheme: "phar://", Name: "Phar"},
 	PlatformNurse: {BaseURL: "https://nurse.penpeer.co/cLnc", URLScheme: "nstation://", Name: "Nurse"},
 }
