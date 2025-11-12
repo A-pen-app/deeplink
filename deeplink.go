@@ -41,11 +41,13 @@ const (
 type DeeplinkCampaign string
 
 const (
-	ShareJoinCampaign    DeeplinkCampaign = "share_and_join"
-	SpecialtyCampaign    DeeplinkCampaign = "專科專區"
-	ReferralCampaign     DeeplinkCampaign = "referral"
-	MeetupAttendCampaign DeeplinkCampaign = "活動"
-	SharePostCampaign    DeeplinkCampaign = "share"
+	ShareJoinCampaign     DeeplinkCampaign = "share_and_join"
+	SpecialtyCampaign     DeeplinkCampaign = "專科專區"
+	ReferralCampaign      DeeplinkCampaign = "referral"
+	MeetupAttendCampaign  DeeplinkCampaign = "活動"
+	SharePostCampaign     DeeplinkCampaign = "share"
+	ResumeReceiveCampaign DeeplinkCampaign = "收到履歷"
+	ResumeReadCampaign    DeeplinkCampaign = "查閱履歷"
 )
 
 type DeeplinkValue string
@@ -56,6 +58,7 @@ const (
 	RewardValue       DeeplinkValue = "shop/wallet_history/?tab=%s"
 	MissionsValue     DeeplinkValue = "missions/mission_list"
 	MeetupAttendValue DeeplinkValue = "meetups/%s"
+	HireChatValue     DeeplinkValue = "hire_chats/%s"
 )
 
 func isValidUUID(s string) bool {
