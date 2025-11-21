@@ -30,6 +30,7 @@ func (p *SpecialtyPostLink) Build() (string, error) {
 	// 組合 deeplink URL
 	deeplinkPath := fmt.Sprintf(string(PostValue), p.postID)
 	deeplinkURL := config.URLScheme + deeplinkPath
+	webDeeplinkURL := config.WebBaseURL + "/post/" + p.postID
 
 	// 設定查詢參數
 	params := url.Values{}
@@ -39,6 +40,9 @@ func (p *SpecialtyPostLink) Build() (string, error) {
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")
+	if config.WebBaseURL != "" {
+		params.Add("af_web_dp", webDeeplinkURL)
+	}
 
 	// 使用 url.URL 組建最終 URL
 	baseURL.RawQuery = params.Encode()
