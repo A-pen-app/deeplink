@@ -58,7 +58,7 @@ const (
 	RewardValue       DeeplinkValue = "shop/wallet_history/?tab=%s"
 	MissionsValue     DeeplinkValue = "missions/mission_list"
 	MeetupAttendValue DeeplinkValue = "meetups/%s"
-	HireChatValue     DeeplinkValue = "hire_chats/%s"
+	HireChatValue     DeeplinkValue = "recruit_chats/%s"
 )
 
 func isValidUUID(s string) bool {
