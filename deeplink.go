@@ -41,13 +41,14 @@ const (
 type DeeplinkCampaign string
 
 const (
-	ShareJoinCampaign     DeeplinkCampaign = "share_and_join"
-	SpecialtyCampaign     DeeplinkCampaign = "專科專區"
-	ReferralCampaign      DeeplinkCampaign = "referral"
-	MeetupAttendCampaign  DeeplinkCampaign = "活動"
-	SharePostCampaign     DeeplinkCampaign = "share"
-	ResumeReceiveCampaign DeeplinkCampaign = "收到履歷"
-	ResumeReadCampaign    DeeplinkCampaign = "查閱履歷"
+	ShareJoinCampaign      DeeplinkCampaign = "share_and_join"
+	SpecialtyCampaign      DeeplinkCampaign = "專科專區"
+	ReferralCampaign       DeeplinkCampaign = "referral"
+	MeetupAttendCampaign   DeeplinkCampaign = "活動"
+	SharePostCampaign      DeeplinkCampaign = "share"
+	ResumeReceiveCampaign  DeeplinkCampaign = "收到履歷"
+	ResumeReadCampaign     DeeplinkCampaign = "查閱履歷"
+	RecruitNewPostCampaign DeeplinkCampaign = "付費職缺發給適合用戶"
 )
 
 type DeeplinkValue string
