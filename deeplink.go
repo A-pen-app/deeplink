@@ -50,6 +50,7 @@ const (
 	ResumeReadCampaign       DeeplinkCampaign = "查閱履歷"
 	BusinessCardSentCampaign DeeplinkCampaign = "先聊再投_求職者投遞名片"
 	RecruitNewPostCampaign   DeeplinkCampaign = "付費職缺發給適合用戶"
+	ShareThreadCampaign      DeeplinkCampaign = "share_thread"
 )
 
 type DeeplinkValue string
@@ -61,6 +62,7 @@ const (
 	MissionsValue     DeeplinkValue = "missions/mission_list"
 	MeetupAttendValue DeeplinkValue = "meetups/%s"
 	HireChatValue     DeeplinkValue = "recruit_chats/%s"
+	AIShareValue      DeeplinkValue = "ai/gpt/share/%s"
 )
 
 func isValidUUID(s string) bool {
