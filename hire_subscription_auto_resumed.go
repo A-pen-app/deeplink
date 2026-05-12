@@ -5,17 +5,17 @@ import (
 	"net/url"
 )
 
-func NewSubscriptionAutoResumedLink(platform Platform) Deeplink {
-	return &SubscriptionAutoResumedLink{
+func NewHireSubscriptionAutoResumedLink(platform Platform) Deeplink {
+	return &HireSubscriptionAutoResumedLink{
 		platform: platform,
 	}
 }
 
-type SubscriptionAutoResumedLink struct {
+type HireSubscriptionAutoResumedLink struct {
 	platform Platform
 }
 
-func (p *SubscriptionAutoResumedLink) Build() (string, error) {
+func (p *HireSubscriptionAutoResumedLink) Build() (string, error) {
 	config := PlatformConfigs[p.platform]
 
 	baseURL, err := url.Parse(config.BaseURL)
@@ -28,7 +28,7 @@ func (p *SubscriptionAutoResumedLink) Build() (string, error) {
 	params := url.Values{}
 	params.Add("af_xp", "email")
 	params.Add("pid", "Email")
-	params.Add("c", string(SubscriptionAutoResumedCampaign))
+	params.Add("c", string(HireSubscriptionAutoResumedCampaign))
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")

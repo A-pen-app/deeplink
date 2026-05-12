@@ -5,17 +5,17 @@ import (
 	"net/url"
 )
 
-func NewSubscriptionPauseReminderLink(platform Platform) Deeplink {
-	return &SubscriptionPauseReminderLink{
+func NewHireSubscriptionPauseReminderLink(platform Platform) Deeplink {
+	return &HireSubscriptionPauseReminderLink{
 		platform: platform,
 	}
 }
 
-type SubscriptionPauseReminderLink struct {
+type HireSubscriptionPauseReminderLink struct {
 	platform Platform
 }
 
-func (p *SubscriptionPauseReminderLink) Build() (string, error) {
+func (p *HireSubscriptionPauseReminderLink) Build() (string, error) {
 	config := PlatformConfigs[p.platform]
 
 	baseURL, err := url.Parse(config.BaseURL)
@@ -28,7 +28,7 @@ func (p *SubscriptionPauseReminderLink) Build() (string, error) {
 	params := url.Values{}
 	params.Add("af_xp", "email")
 	params.Add("pid", "Email")
-	params.Add("c", string(SubscriptionPauseReminderCampgn))
+	params.Add("c", string(HireSubscriptionPauseReminderCampgn))
 	params.Add("deep_link_value", deeplinkURL)
 	params.Add("af_dp", deeplinkURL)
 	params.Add("af_force_deeplink", "true")
