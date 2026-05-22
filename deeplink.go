@@ -41,28 +41,32 @@ const (
 type DeeplinkCampaign string
 
 const (
-	ShareJoinCampaign        DeeplinkCampaign = "share_and_join"
-	SpecialtyCampaign        DeeplinkCampaign = "專科專區"
-	ReferralCampaign         DeeplinkCampaign = "referral"
-	MeetupAttendCampaign     DeeplinkCampaign = "活動"
-	SharePostCampaign        DeeplinkCampaign = "share"
-	ResumeReceiveCampaign    DeeplinkCampaign = "收到履歷"
-	ResumeReadCampaign       DeeplinkCampaign = "查閱履歷"
-	BusinessCardSentCampaign DeeplinkCampaign = "先聊再投_求職者投遞名片"
-	RecruitNewPostCampaign   DeeplinkCampaign = "付費職缺發給適合用戶"
-	ShareThreadCampaign      DeeplinkCampaign = "share_thread"
+	ShareJoinCampaign                   DeeplinkCampaign = "share_and_join"
+	SpecialtyCampaign                   DeeplinkCampaign = "專科專區"
+	ReferralCampaign                    DeeplinkCampaign = "referral"
+	MeetupAttendCampaign                DeeplinkCampaign = "活動"
+	SharePostCampaign                   DeeplinkCampaign = "share"
+	ResumeReceiveCampaign               DeeplinkCampaign = "收到履歷"
+	ResumeReadCampaign                  DeeplinkCampaign = "查閱履歷"
+	BusinessCardSentCampaign            DeeplinkCampaign = "先聊再投_求職者投遞名片"
+	RecruitNewPostCampaign              DeeplinkCampaign = "付費職缺發給適合用戶"
+	HireSubscriptionPauseReminderCampgn DeeplinkCampaign = "暫停功能_n天前通知"
+	HireSubscriptionAutoResumedCampaign DeeplinkCampaign = "暫停功能_恢復後通知"
+	ShareThreadCampaign                 DeeplinkCampaign = "share_thread"
 )
 
 type DeeplinkValue string
 
 const (
-	LoginValue        DeeplinkValue = "login/?type=%v&code=%s"
-	PostValue         DeeplinkValue = "posts/%s"
-	RewardValue       DeeplinkValue = "shop/wallet_history/?tab=%s"
-	MissionsValue     DeeplinkValue = "missions/mission_list"
-	MeetupAttendValue DeeplinkValue = "meetups/%s"
-	HireChatValue     DeeplinkValue = "recruit_chats/%s"
-	AIShareValue      DeeplinkValue = "ai/chat/share/%s"
+	LoginValue                  DeeplinkValue = "login/?type=%v&code=%s"
+	PostValue                   DeeplinkValue = "posts/%s"
+	RewardValue                 DeeplinkValue = "shop/wallet_history/?tab=%s"
+	MissionsValue               DeeplinkValue = "missions/mission_list"
+	MeetupAttendValue           DeeplinkValue = "meetups/%s"
+	HireChatValue               DeeplinkValue = "recruit_chats/%s"
+	SubscriptionManagementValue DeeplinkValue = "subscriptions_management?category=hire&type=manual"
+	HomeValue                   DeeplinkValue = "tabs/home/hot"
+	AIShareValue                DeeplinkValue = "ai/chat/share/%s"
 )
 
 func isValidUUID(s string) bool {
