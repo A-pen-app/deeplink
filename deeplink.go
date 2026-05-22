@@ -62,7 +62,7 @@ const (
 	MissionsValue     DeeplinkValue = "missions/mission_list"
 	MeetupAttendValue DeeplinkValue = "meetups/%s"
 	HireChatValue     DeeplinkValue = "recruit_chats/%s"
-	AIShareValue      DeeplinkValue = "ai/gpt/share/%s"
+	AIShareValue      DeeplinkValue = "ai/chat/share/%s"
 )
 
 func isValidUUID(s string) bool {

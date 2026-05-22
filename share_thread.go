@@ -27,7 +27,7 @@ func (s *ShareThreadLink) Build() (string, error) {
 
 	deeplinkPath := fmt.Sprintf(string(AIShareValue), s.id)
 	deeplinkURL := config.URLScheme + deeplinkPath
-	webDeeplinkURL := config.WebBaseURL + "/ai/gpt/share/" + s.id
+	webDeeplinkURL := config.WebBaseURL + "/ai/chat/share/" + s.id
 
 	params := url.Values{}
 	params.Add("c", string(ShareThreadCampaign))
