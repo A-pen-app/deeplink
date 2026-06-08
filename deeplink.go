@@ -25,8 +25,8 @@ type PlatformConfig struct {
 
 var PlatformConfigs = map[Platform]PlatformConfig{
 	PlatformApen:  {BaseURL: "https://apen.penpeer.co/sJck", URLScheme: "apen://", Name: "Apen", WebBaseURL: "https://www.a-pen.co"},
-	PlatformPhar:  {BaseURL: "https://phar.penpeer.co/9db5", URLScheme: "phar://", Name: "Phar"},
-	PlatformNurse: {BaseURL: "https://nurse.penpeer.co/cLnc", URLScheme: "nstation://", Name: "Nurse"},
+	PlatformPhar:  {BaseURL: "https://phar.penpeer.co/9db5", URLScheme: "phar://", Name: "Phar", WebBaseURL: "https://phar-web.penpeer.co"},
+	PlatformNurse: {BaseURL: "https://nurse.penpeer.co/cLnc", URLScheme: "nstation://", Name: "Nurse", WebBaseURL: "https://nurse-web.penpeer.co"},
 }
 
 type DeeplinkType int
