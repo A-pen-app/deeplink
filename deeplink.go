@@ -53,6 +53,7 @@ const (
 	HireSubscriptionPauseReminderCampgn DeeplinkCampaign = "暫停功能_n天前通知"
 	HireSubscriptionAutoResumedCampaign DeeplinkCampaign = "暫停功能_恢復後通知"
 	ShareThreadCampaign                 DeeplinkCampaign = "share_thread"
+	ShareShortVideoCampaign             DeeplinkCampaign = "share_short_video"
 )
 
 type DeeplinkValue string
@@ -67,6 +68,7 @@ const (
 	SubscriptionManagementValue DeeplinkValue = "subscriptions_management?category=hire&type=manual"
 	HomeValue                   DeeplinkValue = "tabs/home/hot"
 	AIShareValue                DeeplinkValue = "ai/chat/share/%s"
+	ShortVideoValue             DeeplinkValue = "short_videos/%s"
 )
 
 func isValidUUID(s string) bool {
