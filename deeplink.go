@@ -54,6 +54,7 @@ const (
 	HireSubscriptionAutoResumedCampaign DeeplinkCampaign = "暫停功能_恢復後通知"
 	ShareThreadCampaign                 DeeplinkCampaign = "share_thread"
 	ShareShortVideoCampaign             DeeplinkCampaign = "share_short_video"
+	ActivityPostCampaign                DeeplinkCampaign = "活動貼文"
 )
 
 type DeeplinkValue string
