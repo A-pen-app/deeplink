@@ -55,6 +55,7 @@ const (
 	ShareThreadCampaign                 DeeplinkCampaign = "share_thread"
 	ShareShortVideoCampaign             DeeplinkCampaign = "share_short_video"
 	ActivityPostCampaign                DeeplinkCampaign = "活動貼文"
+	TipReceivedCampaign                 DeeplinkCampaign = "收到打賞"
 )
 
 type DeeplinkValue string
