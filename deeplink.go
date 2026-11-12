@@ -56,6 +56,7 @@ const (
 	ShareShortVideoCampaign             DeeplinkCampaign = "share_short_video"
 	ActivityPostCampaign                DeeplinkCampaign = "活動貼文"
 	TipReceivedCampaign                 DeeplinkCampaign = "收到打賞"
+	EndorsementInvitationCampaign       DeeplinkCampaign = "share_profile"
 )
 
 type DeeplinkValue string
@@ -71,6 +72,7 @@ const (
 	HomeValue                   DeeplinkValue = "tabs/home/hot"
 	AIShareValue                DeeplinkValue = "ai/chat/share/%s"
 	ShortVideoValue             DeeplinkValue = "short_videos/%s"
+	EndorsementValue            DeeplinkValue = "profiles/%s/endorsement"
 )
 
 func isValidUUID(s string) bool {
